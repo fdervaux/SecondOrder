@@ -1,9 +1,18 @@
 
 using UnityEngine;
 
-
+/// <summary>
+/// Second order dynamics class helpers.
+/// </summary>
 public static class SecondOrderDynamics
 {
+    /// <summary>
+    /// Update the second order dynamics with the given target position and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target position.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new position.</returns>
     public static Vector2 SencondOrderUpdate(Vector2 targetPosition, SecondOrder<Vector2> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -14,6 +23,15 @@ public static class SecondOrderDynamics
 
         return SencondOrderUpdate(targetPosition, xd, secondOrder, deltaTime);
     }
+    
+    /// <summary>
+    /// Update the second order dynamics with the given target position and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target position.</param>
+    /// <param name="targetVelocity"> The target velocity.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new position.</returns>
     public static Vector2 SencondOrderUpdate(Vector2 targetPosition, Vector2 targetVelocity, SecondOrder<Vector2> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -33,6 +51,13 @@ public static class SecondOrderDynamics
         return secondOrder.targetPosition;
     }
 
+    /// <summary>
+    /// Update the second order dynamics with the given target position and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target position.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new position.</returns>
     public static Vector3 SencondOrderUpdate(Vector3 targetPosition, SecondOrder<Vector3> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -43,6 +68,15 @@ public static class SecondOrderDynamics
 
         return SencondOrderUpdate(targetPosition, xd, secondOrder, deltaTime);
     }
+    
+    /// <summary>
+    /// Update the second order dynamics with the given target position and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target position.</param>
+    /// <param name="targetVelocity"> The target velocity.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new position.</returns>
     public static Vector3 SencondOrderUpdate(Vector3 targetPosition, Vector3 targetVelocity, SecondOrder<Vector3> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -56,6 +90,13 @@ public static class SecondOrderDynamics
         return secondOrder.targetPosition;
     }
 
+    /// <summary>
+    /// Update the second order dynamics with the given target position and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target position.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new position.</returns>
     public static float SencondOrderUpdate(float targetPosition, SecondOrder<float> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -66,6 +107,15 @@ public static class SecondOrderDynamics
 
         return SencondOrderUpdate(targetPosition, xd, secondOrder, deltaTime);
     }
+    
+    /// <summary>
+    /// Update the second order dynamics with the given target position and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target position.</param>
+    /// <param name="targetVelocity"> The target velocity.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new position.</returns>
     public static float SencondOrderUpdate(float targetPosition, float targetVelocity, SecondOrder<float> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -79,6 +129,13 @@ public static class SecondOrderDynamics
         return secondOrder.targetPosition;
     }
 
+    /// <summary>
+    /// Update the second order dynamics with the given target rotation and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target rotation.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new rotation.</returns>
     public static Quaternion SencondOrderUpdate(Quaternion targetRotation, SecondOrder<Quaternion> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -96,6 +153,12 @@ public static class SecondOrderDynamics
         return SencondOrderUpdate(targetRotation, targetVelocity, secondOrder, deltaTime);
     }
 
+    /// <summary>
+    /// Normalize the sign of the quaternion.
+    /// </summary>
+    /// <param name="current"> The current quaternion.</param>
+    /// <param name="target"> The target quaternion.</param>
+    /// <returns></returns>
     private static bool NormalizeSign(Quaternion current, ref Quaternion target)
     {
         // if our dot product is positive, we don't need to invert signs.
@@ -113,6 +176,14 @@ public static class SecondOrderDynamics
         return true;
     }
 
+    /// <summary>
+    /// Update the second order dynamics with the given target rotation and second order data.
+    /// </summary>
+    /// <param name="targetPosition"> The target rotation.</param>
+    /// <param name="targetVelocity"> The target velocity.</param>
+    /// <param name="secondOrder"> the second order data.</param>
+    /// <param name="deltaTime"> The delta time.</param>
+    /// <returns> new rotation.</returns>
     public static Quaternion SencondOrderUpdate(Quaternion targetRotation, Quaternion targetVelocity, SecondOrder<Quaternion> secondOrder, float deltaTime)
     {
         if (!secondOrder.IsInit)
@@ -139,11 +210,6 @@ public static class SecondOrderDynamics
         tv.w = secondOrder.targetVelocity.w + deltaTime * (targetRotation.w + secondOrder.Data.K3 * targetVelocity.w - secondOrder.targetPosition.w - secondOrder.Data.K1 * secondOrder.targetVelocity.w) / secondOrder.Data.K2_stable;
 
         secondOrder.targetVelocity = tv;
-
-        /*if( inverted)
-        {
-            secondOrder.targetPosition.Normalize();
-        }*/
 
         return secondOrder.targetPosition;
     }

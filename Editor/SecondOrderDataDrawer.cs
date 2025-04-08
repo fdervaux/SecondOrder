@@ -19,7 +19,6 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
     
     public void updateGraph(SerializedProperty property)
     {
-        
         _secondOrder = new SecondOrder<float>();
 
         _secondOrder.Data = target;

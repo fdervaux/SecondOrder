@@ -1,23 +1,44 @@
-
 using UnityEngine;
 using Unity.Mathematics;
 
+
+/// <summary>
+/// Second order data class.
+/// </summary>
 [System.Serializable]
 public class SecondOrderData : ISerializationCallbackReceiver
 {
+    /// <summary>
+    /// The frequency of the second order system.
+    /// </summary>
     [SerializeField, Range(0, 100)] private float frequency = 1;
 
+    /// <summary>
+    /// The damping ratio of the second order system.
+    /// </summary>
     [SerializeField, Range(0, 5)] private float damping = 1;
 
+    /// <summary>
+    /// The impulse of the second order system.
+    /// </summary>
     [SerializeField, Range(-10, 10)] private float impulse = 0;
 
     private float _w, _z, _d, _k1, _k2, _k3;
     private float k1_stable, k2_stable;
 
+    /// <summary>
+    /// Constructor for the second order data class.
+    /// </summary>
     public SecondOrderData()
     {
     }
 
+    /// <summary>
+    /// Constructor for the second order data class.
+    /// </summary>
+    /// <param name="frequency"> Frequency of the second order system.</param>
+    /// <param name="damping"> Damping ratio of the second order system.</param>
+    /// <param name="impulse"> Impulse of the second order system.</param>
     public SecondOrderData(float frequency, float damping, float impulse)
     {
         this.frequency = frequency;
@@ -29,6 +50,10 @@ public class SecondOrderData : ISerializationCallbackReceiver
     public float K2_stable { get => k2_stable; set => k2_stable = value; }
     public float K3 { get => _k3; set => _k3 = value; }
 
+    /// <summary>
+    /// Update the data of the second order system.
+    /// </summary>
+    /// <returns></returns>
     public void UpdateData()
     {
         _w = 2 * Mathf.PI * frequency;
@@ -40,6 +65,11 @@ public class SecondOrderData : ISerializationCallbackReceiver
         _k3 = impulse * damping / _w;
     }
 
+    /// <summary>
+    /// Set the delta time for the second order system.
+    /// </summary>
+    /// <param name="deltaTime"> Delta time for the second order system.</param>
+    /// <returns></returns>
     public void setDeltaTime(float deltaTime)
     {
         if (_w * deltaTime < _z)
@@ -60,8 +90,16 @@ public class SecondOrderData : ISerializationCallbackReceiver
         }
     }
 
+    /// <summary>
+    /// Callback function before the serialization.
+    /// </summary>
+    /// <returns></returns>
     public void OnBeforeSerialize() { }
 
+    /// <summary>
+    /// Callback function after the deserialization.
+    /// </summary>
+    /// <returns></returns>
     public void OnAfterDeserialize()
     {
         UpdateData();

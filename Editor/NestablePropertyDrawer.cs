@@ -5,6 +5,9 @@ using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
 
+/// <summary>
+/// NestablePropertyDrawer is a custom property drawer that allows for nested properties.
+/// </summary>
 public class NestablePropertyDrawer : PropertyDrawer
 {
 	private bool initialized = false;
@@ -12,6 +15,12 @@ public class NestablePropertyDrawer : PropertyDrawer
 	protected Type objectType = null;
 	
 	private static readonly Regex matchArrayElement = new Regex(@"^data\[(\d+)\]$");
+	
+	/// <summary>
+	/// Initializes the property drawer with the given SerializedProperty.
+	/// </summary>
+	/// <param name="prop"></param>
+	/// <returns></returns>
 	protected virtual void Initialize(SerializedProperty prop)
 	{
 		if (initialized)
@@ -85,7 +94,7 @@ public class NestablePropertyDrawer : PropertyDrawer
 		}
 		initialized = true;
 	}
-
+	
 	public override void OnGUI(Rect position, SerializedProperty prop, GUIContent label)
 	{
 		Initialize(prop);
