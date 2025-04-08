@@ -10,14 +10,16 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
     private AnimationCurve _curve;
     private AnimationCurve _targetCurve;
 
+    private bool _needUpdateGraph = true;
+
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         return (EditorGUIUtility.singleLineHeight + 2) * 4 + graphSize;
     }
-
-
+    
     public void updateGraph(SerializedProperty property)
     {
+        
         _secondOrder = new SecondOrder<float>();
 
         _secondOrder.Data = target;
@@ -55,8 +57,12 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
     protected override void Initialize(SerializedProperty prop)
 	{
 		base.Initialize(prop);
-        //target.UpdateData();
-		updateGraph(prop);
+
+        if (_needUpdateGraph)
+        {
+            updateGraph(prop);
+            _needUpdateGraph = false;
+        }
 	}
 
 
@@ -81,7 +87,7 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
 
         if (EditorGUI.EndChangeCheck())
         {
-            updateGraph(property);
+            _needUpdateGraph = true;
         }
 
         var graphRect = new Rect(position.x, position.y + 3 * (EditorGUIUtility.singleLineHeight + 2), position.width, graphSize);
