@@ -1,0 +1,12 @@
+{
+    "name": "com.fdervaux.secondorder",
+    "version": "1.0.0",
+    "displayName": "Second Order",
+    "description": "Second Order",
+    "unity": "2021.3",
+    "author": {
+      "name": "Francois Dervaux",
+      "email": "email@example.com",
+      "url": "https://github.com/fdervaux"
+    }
+}

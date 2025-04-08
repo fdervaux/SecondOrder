@@ -1,0 +1,19 @@
+{
+    "name": "SecondOrderEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d4264abd474a0954c88f9a4fe0bb154c",
+        "GUID:4af66c6e39b4f5f4eabec8fbc2382f6a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
