@@ -96,6 +96,9 @@ namespace Plugins.SecondOrder.Runtime
 - `SecondOrderDynamics.SecondOrderUpdate()` computes the updated value each frame based on the input target, internal state, and `deltaTime`.
 - You can control the behavior using parameters such as **damping**, **frequency**, and **response** through the `SecondOrder<T>` initialization.
 
+![image](https://github.com/user-attachments/assets/882948d8-2934-49c2-a3c1-f3f4bd213060)
+
+
 This makes it perfect for:
 
 - Camera smoothing  
