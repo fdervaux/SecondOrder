@@ -1,4 +1,4 @@
-# Second Order
+# Second Order Dynamic for Unity
 
 [![license](https://img.shields.io/badge/LICENSE-MIT-green.svg)](LICENSE)
 
