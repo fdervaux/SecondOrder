@@ -14,9 +14,12 @@ This package was inspired by the work of **t3ssel8r** and the concept of second 
 
 A big thanks to t3ssel8r for providing a clear and detailed explanation of the theory behind this technique.
 
+
+
 ## Installation
 
 You can install this package via the Unity Package Manager using the Git URL.
+
 
 ### Option 1: Using Git URL (recommended)
 
@@ -29,7 +32,6 @@ https://github.com/fdervaux/SecondOrder.git#v1.0.0
 ```
 5. Click **Add**. Unity will fetch and install the package.
 
----
 
 ### Option 2: Modify `manifest.json` manually
 
@@ -39,6 +41,7 @@ https://github.com/fdervaux/SecondOrder.git#v1.0.0
 ```json
 "com.fdervaux.secondorder": "https://github.com/fdervaux/SecondOrder.git#v1.0.0"
 ```
+
 
 ## Usage
 
@@ -85,6 +88,8 @@ namespace Plugins.SecondOrder.Runtime
     }
 }
 ```
+
+
 ### How It Works
 
 - `SecondOrder<T>` is a generic struct that holds state for the dynamic system.
@@ -97,6 +102,7 @@ This makes it perfect for:
 - Target following  
 - UI transitions  
 - Any situation where you want physically-inspired motion without writing custom smoothing logic
+
 
 ### Supported Types
 
@@ -114,6 +120,7 @@ Each supported type has overloads for:
   var newValue = SecondOrderDynamics.SecondOrderUpdate(targetValue, secondOrder, deltaTime);
   ```
 
+
 ### Advanced Update with Explicit Velocity Input
 
 If you want more control, you can provide your own **target velocity** when updating the second order dynamics:
@@ -126,6 +133,8 @@ This gives you flexibility to provide a custom velocity calculation
 
 
 > ⚠️ **Custom types** are not supported directly, but you can extend the system by implementing similar overloads for your specific use cases.
+
+
 
 
 ## License
