@@ -2,6 +2,8 @@
 
 [![license](https://img.shields.io/badge/LICENSE-MIT-green.svg)](LICENSE)
 
+<br>
+
 ## Overview
 
 <p align="center">
@@ -19,7 +21,7 @@ This package was inspired by the work of **t3ssel8r** and the concept of second 
 
 A big thanks to t3ssel8r for providing a clear and detailed explanation of the theory behind this technique.
 
-
+<br>
 
 ## Installation
 
@@ -47,10 +49,13 @@ https://github.com/fdervaux/SecondOrder.git#v1.0.0
 "com.fdervaux.secondorder": "https://github.com/fdervaux/SecondOrder.git#v1.0.0"
 ```
 
+<br>
 
 ## Usage
 
 This package provides a simple and flexible way to apply second order dynamics to any data type (e.g., `Vector3`, `float`, etc.). A typical use case is to smoothly follow a target with natural, spring-like motion.
+
+<br>
 
 ### Basic Example: Follow a Target
 
@@ -94,6 +99,7 @@ namespace Plugins.SecondOrder.Runtime
 }
 ```
 
+<br>
 
 ### How It Works
 
@@ -112,6 +118,7 @@ This makes it perfect for:
 - UI transitions  
 - Any situation where you want physically-inspired motion without writing custom smoothing logic
 
+<br>
 
 ### Supported Types
 
@@ -129,6 +136,7 @@ Each supported type has overloads for:
   var newValue = SecondOrderDynamics.SecondOrderUpdate(targetValue, secondOrder, deltaTime);
   ```
 
+<br>
 
 ### Advanced Update with Explicit Velocity Input
 
@@ -143,8 +151,7 @@ This gives you flexibility to provide a custom velocity calculation
 
 > ⚠️ **Custom types** are not supported directly, but you can extend the system by implementing similar overloads for your specific use cases.
 
-
-
+<br>
 
 ## License
 
