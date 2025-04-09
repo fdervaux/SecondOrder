@@ -1,3 +1,4 @@
+using Plugins.SecondOrder.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,7 +33,7 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
         for (int i = 0; i < keyCount; i++)
         {
             float target = i >= keyCount * 0.1f ? 1f : 0f;
-            value = SecondOrderDynamics.SencondOrderUpdate(target, _secondOrder, step);
+            value = SecondOrderDynamics.SecondOrderUpdate(target, _secondOrder, step);
             keyFrames[i] = new Keyframe((float)i / keyCount, value);
         }
 
@@ -79,9 +80,9 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
 
         EditorGUI.BeginChangeCheck();
         
-        EditorGUI.PropertyField(frequencyRect, property.FindPropertyRelative("frequency"), new GUIContent("frequency"));
-        EditorGUI.PropertyField(dampingRect, property.FindPropertyRelative("damping"), new GUIContent("damping"));
-        EditorGUI.PropertyField(impulseRect, property.FindPropertyRelative("impulse"), new GUIContent("impulse"));
+        EditorGUI.PropertyField(frequencyRect, property.FindPropertyRelative("_frequency"), new GUIContent("frequency"));
+        EditorGUI.PropertyField(dampingRect, property.FindPropertyRelative("_damping"), new GUIContent("damping"));
+        EditorGUI.PropertyField(impulseRect, property.FindPropertyRelative("_impulse"), new GUIContent("impulse"));
 
 
         if (EditorGUI.EndChangeCheck())
