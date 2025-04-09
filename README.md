@@ -6,8 +6,10 @@
 
 ## Overview
 
+
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5bfca54b-68a1-4ae3-a218-981fb67c8eb2" width="500">
+  <img src="https://github.com/user-attachments/assets/5bfca54b-68a1-4ae3-a218-981fb67c8eb2" width="300">
+  <img src="https://github.com/user-attachments/assets/7f7ded78-34a8-47d5-b2f6-a20ee545ad6e" width="300">
 </p>
 
 
