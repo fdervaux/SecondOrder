@@ -115,14 +115,13 @@ namespace Packages.SecondOrder.Runtime
                 return secondOrder.Position;
 
             
-            quaternion correctedTargetRotation = targetRotation.EnsureSameHemisphere(secondOrder.LastPosition);
-
+            Quaternion correctedTargetRotation = targetRotation.EnsureSameHemisphere(secondOrder.LastPosition);
             Quaternion deltaRotation = correctedTargetRotation * Quaternion.Inverse(secondOrder.LastPosition);
             Quaternion velocity = deltaRotation.Divide(deltaTime).NormalizeQuaternion();
 
             secondOrder.LastPosition = targetRotation;
 
-            return GenericSecondOrderUpdate(targetRotation, velocity, secondOrder, deltaTime,
+            return GenericSecondOrderUpdate(correctedTargetRotation, velocity, secondOrder, deltaTime,
                 (a, b) => a.Add(b),
                 (a, b) => a.Subtract(b),
                 (a, s) => a.Multiply(s),
