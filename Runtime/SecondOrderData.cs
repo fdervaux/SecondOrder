@@ -13,7 +13,7 @@ namespace Plugins.SecondOrder.Runtime
         /// <summary>
         /// The frequency of the second order system.
         /// </summary>
-        [SerializeField, Range(0.0, 100)] private float _frequency = 1;
+        [SerializeField, Range(0.001f, 100)] private float _frequency = 1;
 
         /// <summary>
         /// The damping ratio of the second order system.
