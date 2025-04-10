@@ -58,7 +58,7 @@ namespace Plugins.SecondOrder.Runtime
         /// <returns></returns>
         public void UpdateData()
         {
-            if(_frequency = 0)
+            if(_frequency == 0)
                 _frequency = 0.001f;
 
             _w = 2 * Mathf.PI * _frequency;
