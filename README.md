@@ -7,8 +7,9 @@
 ## Overview
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/5bfca54b-68a1-4ae3-a218-981fb67c8eb2" width="300">
-  <img src="https://github.com/user-attachments/assets/b58a782e-7062-4548-9565-011e616eaa1c" width="300">
+  <img src="https://github.com/user-attachments/assets/5bfca54b-68a1-4ae3-a218-981fb67c8eb2" width="250">
+  <img src="https://github.com/user-attachments/assets/b58a782e-7062-4548-9565-011e616eaa1c" width="250">
+  <img src="https://github.com/user-attachments/assets/4ff3fc8b-9b19-4290-94fe-8a494052973d" width="250">
 </p>
 
 Second Order Dynamics for Unity is a lightweight and flexible package that enables smooth and responsive motion through second order dynamic simulation. Inspired by the behavior of real-world physical systems, this technique allows you to create natural, spring-like motion for objects in your game—ideal for camera smoothing, UI animations, character follow behaviors, and more.
