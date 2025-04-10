@@ -119,7 +119,7 @@ namespace Packages.SecondOrder.Runtime
 
             secondOrder.LastPosition = targetRotation;
 
-            targetRotation = targetRotation.EnsureSameHemisphere(secondOrder.LastPosition);
+            targetRotation = targetRotation.EnsureSameHemisphere(secondOrder.Position);
 
             return GenericSecondOrderUpdate(targetRotation, velocity, secondOrder, deltaTime,
                 (a, b) => a.Add(b),
