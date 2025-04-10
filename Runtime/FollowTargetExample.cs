@@ -1,4 +1,5 @@
 using System;
+using Packages.SecondOrder.Runtime;
 using UnityEngine;
 
 namespace Plugins.SecondOrder.Runtime
@@ -29,7 +30,7 @@ namespace Plugins.SecondOrder.Runtime
         private void Update()
         {
             // Update the second order filter with the current position of the transform.
-            transform.position = SecondOrderDynamics.SecondOrderUpdate(_target.position,
+            transform.position = SecondOrderDynamics.Update(_target.position,
                 _secondOrder, Time.deltaTime);
         }
     }

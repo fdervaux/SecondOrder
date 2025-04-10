@@ -1,3 +1,4 @@
+using Packages.SecondOrder.Runtime;
 using UnityEngine;
 
 namespace Plugins.SecondOrder.Runtime
@@ -25,7 +26,7 @@ namespace Plugins.SecondOrder.Runtime
         private void Update()
         {
             // Update the second order filter with the current rotation of the transform.
-            transform.rotation = SecondOrderDynamics.SecondOrderUpdate(_target.rotation,
+            transform.rotation = SecondOrderDynamics.Update(_target.rotation,
                 _secondOrder, Time.deltaTime);
         }
     }

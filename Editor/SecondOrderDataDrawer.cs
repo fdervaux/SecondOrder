@@ -1,3 +1,4 @@
+using Packages.SecondOrder.Runtime;
 using Plugins.SecondOrder.Runtime;
 using UnityEditor;
 using UnityEngine;
@@ -33,7 +34,7 @@ public class SecondOrderDataDrawer : NestablePropertyDrawer
         for (int i = 0; i < keyCount; i++)
         {
             float target = i >= keyCount * 0.1f ? 1f : 0f;
-            value = SecondOrderDynamics.SecondOrderUpdate(target, _secondOrder, step);
+            value = SecondOrderDynamics.Update(target, _secondOrder, step);
             keyFrames[i] = new Keyframe((float)i / keyCount, value);
         }
 

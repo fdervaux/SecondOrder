@@ -16,17 +16,17 @@ namespace Plugins.SecondOrder.Runtime
 
         private bool _isInit = false;
         private T _lastPosition;
-        private T _targetPosition, _targetVelocity;
+        private T _position, _velocity;
 
         /// <summary>
         /// The target position.
         /// </summary>
-        public T TargetPosition { get => _targetPosition; set => _targetPosition = value; }
+        public T Position { get => _position; set => _position = value; }
     
         /// <summary>
         /// The target velocity.
         /// </summary>
-        public T TargetVelocity { get => _targetVelocity; set => _targetVelocity = value; }
+        public T Velocity { get => _velocity; set => _velocity = value; }
     
         /// <summary>
         /// The last position.
@@ -50,7 +50,7 @@ namespace Plugins.SecondOrder.Runtime
         public void Init(T position)
         {
             _lastPosition = position;
-            _targetPosition = position;
+            _position = position;
             _isInit = true;
         }
     }
