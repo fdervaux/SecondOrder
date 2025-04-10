@@ -38,8 +38,8 @@ namespace Packages.SecondOrder.Runtime
             secondOrder.Position = add(secondOrder.Position, scale(secondOrder.Velocity, deltaTime));
 
             secondOrder.Velocity = add(secondOrder.Velocity, scale(
-                subtract(add(targetPosition, normalize(scale(targetVelocity, secondOrder.Data.K3))),
-                    add(secondOrder.Position, normalize(scale(secondOrder.Velocity, secondOrder.Data.K1)))),
+                subtract(add(targetPosition, scale(targetVelocity, secondOrder.Data.K3)),
+                    add(secondOrder.Position, scale(secondOrder.Velocity, secondOrder.Data.K1))),
                 deltaTime / secondOrder.Data.K2Stable));
 
           
@@ -119,8 +119,8 @@ namespace Packages.SecondOrder.Runtime
 
             targetRotation = targetRotation.EnsureSameHemisphere(secondOrder.LastPosition);
 
-            Quaternion deltaRotation = targetRotation * Quaternion.Inverse(secondOrder.LastPosition);
-            Quaternion velocity = deltaRotation.Divide(deltaTime).NormalizeQuaternion();
+            Quaternion deltaRotation = targetRotation.Subtract(secondOrder.LastPosition);
+            Quaternion velocity = deltaRotation.Divide(deltaTime);
 
             secondOrder.LastPosition = targetRotation;
 
