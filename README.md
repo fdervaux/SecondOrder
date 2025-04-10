@@ -34,7 +34,7 @@ You can install this package via the Unity Package Manager using the Git URL.
 3. Click the `+` button in the top-left corner, then choose **"Add package from Git URL..."**
 4. Paste the following URL:
 ``` 
-https://github.com/fdervaux/SecondOrder.git#v1.0.0
+https://github.com/fdervaux/SecondOrder.git#v1.0.1
 ```
 5. Click **Add**. Unity will fetch and install the package.
 
@@ -44,7 +44,7 @@ https://github.com/fdervaux/SecondOrder.git#v1.0.0
 2. Add the following line to the `"dependencies"` section:
 
 ```json
-"com.fdervaux.secondorder": "https://github.com/fdervaux/SecondOrder.git#v1.0.0"
+"com.fdervaux.secondorder": "https://github.com/fdervaux/SecondOrder.git#v1.0.1"
 ```
 
 <br>
