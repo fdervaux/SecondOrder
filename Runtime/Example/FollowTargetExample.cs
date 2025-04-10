@@ -1,8 +1,6 @@
-using System;
-using Packages.SecondOrder.Runtime;
 using UnityEngine;
 
-namespace Plugins.SecondOrder.Runtime
+namespace Package.SecondOrder.Runtime.Example
 {
     /// <summary>
     /// FollowTargetExample is a simple example of how to use the FollowTarget component.

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Plugins.SecondOrder.Runtime
+namespace Package.SecondOrder.Runtime
 {
     /// <summary>
     /// Class to hold the second order data.
@@ -14,7 +14,7 @@ namespace Plugins.SecondOrder.Runtime
         [SerializeField]
         private SecondOrderData _data;
 
-        private bool _isInit = false;
+        private bool _isInit;
         private T _lastPosition;
         private T _position, _velocity;
 

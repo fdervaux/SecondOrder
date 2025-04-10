@@ -1,7 +1,6 @@
-using Packages.SecondOrder.Runtime;
 using UnityEngine;
 
-namespace Plugins.SecondOrder.Runtime
+namespace Package.SecondOrder.Runtime.Example
 {
     public class FollowRotationExample : MonoBehaviour
     {

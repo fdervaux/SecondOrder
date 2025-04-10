@@ -1,8 +1,7 @@
 using System;
-using Plugins.SecondOrder.Runtime;
 using UnityEngine;
 
-namespace Packages.SecondOrder.Runtime
+namespace Package.SecondOrder.Runtime
 {
     public static class SecondOrderDynamics
     {
@@ -29,8 +28,7 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.LastPosition;
 
-            if(normalize == null)
-                normalize = x => x;
+            normalize ??= x => x;
 
             secondOrder.Data.SetDeltaTime(deltaTime);
 
@@ -39,7 +37,7 @@ namespace Packages.SecondOrder.Runtime
 
             secondOrder.Velocity = add(secondOrder.Velocity, scale(
                 subtract(add(targetPosition, scale(targetVelocity, secondOrder.Data.K3)),
-                    add(secondOrder.Position, scale(secondOrder.Velocity, secondOrder.Data.K1))),
+                    add(secondOrder.Position, scale(secondOrder.Velocity, secondOrder.Data.K1Stable))),
                 deltaTime / secondOrder.Data.K2Stable));
 
           

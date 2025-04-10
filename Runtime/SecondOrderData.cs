@@ -1,8 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Plugins.SecondOrder.Runtime
+namespace Package.SecondOrder.Runtime
 {
     /// <summary>
     /// Second order data class.
@@ -23,7 +22,7 @@ namespace Plugins.SecondOrder.Runtime
         /// <summary>
         /// The impulse of the second order system.
         /// </summary>
-        [SerializeField, Range(-10, 10)] private float _impulse = 0;
+        [SerializeField, Range(-10, 10)] private float _impulse;
 
         private float _w, _z, _d, _k1, _k2, _k3;
         private float _k1Stable, _k2Stable;
@@ -47,8 +46,8 @@ namespace Plugins.SecondOrder.Runtime
             this._damping = damping;
             this._impulse = impulse;
         }
-
-        public float K1 { get => _k1; set => _k1 = value; }
+        
+        public float K1Stable { get => _k1Stable; set => _k1Stable = value; }
         public float K2Stable { get => _k2Stable; set => _k2Stable = value; }
         public float K3 { get => _k3; set => _k3 = value; }
 
