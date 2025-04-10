@@ -1,6 +1,6 @@
 {
   "name": "com.fdervaux.secondorder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Second Order",
   "description": "Second Order Dynamics for Unity is a lightweight and flexible package that enables smooth and responsive motion through second order dynamic simulation. Inspired by the behavior of real-world physical systems, this technique allows you to create natural, spring-like motion for objects in your game—ideal for camera smoothing, UI animations, character follow behaviors, and more.",
   "unity": "2021.3",
@@ -9,6 +9,5 @@
     "name": "Francois Dervaux",
     "email": "email@example.com",
     "url": "https://github.com/fdervaux"
-  },
-  "_fingerprint": "c428d1d887772ccb2710b28668104ccc09191f2c"
+  }
 }

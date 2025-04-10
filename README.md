@@ -6,12 +6,10 @@
 
 ## Overview
 
-
 <p align="center">
   <img src="https://github.com/user-attachments/assets/5bfca54b-68a1-4ae3-a218-981fb67c8eb2" width="300">
   <img src="https://github.com/user-attachments/assets/b58a782e-7062-4548-9565-011e616eaa1c" width="300">
 </p>
-
 
 Second Order Dynamics for Unity is a lightweight and flexible package that enables smooth and responsive motion through second order dynamic simulation. Inspired by the behavior of real-world physical systems, this technique allows you to create natural, spring-like motion for objects in your game—ideal for camera smoothing, UI animations, character follow behaviors, and more.
 
@@ -29,7 +27,6 @@ A big thanks to t3ssel8r for providing a clear and detailed explanation of the t
 
 You can install this package via the Unity Package Manager using the Git URL.
 
-
 ### Option 1: Using Git URL (recommended)
 
 1. Open your Unity project.
@@ -40,7 +37,6 @@ You can install this package via the Unity Package Manager using the Git URL.
 https://github.com/fdervaux/SecondOrder.git#v1.0.0
 ```
 5. Click **Add**. Unity will fetch and install the package.
-
 
 ### Option 2: Modify `manifest.json` manually
 
@@ -94,7 +90,7 @@ namespace Plugins.SecondOrder.Runtime
         private void Update()
         {
             // Update the second order filter with the current position of the target.
-            transform.position = SecondOrderDynamics.SecondOrderUpdate(
+            transform.position = SecondOrderDynamics.Update(
                 _target.position, _secondOrder, Time.deltaTime);
         }
     }
@@ -135,30 +131,11 @@ Each supported type has overloads for:
 
 - **Basic update** with automatic velocity estimation:
   ```csharp
-  var newValue = SecondOrderDynamics.SecondOrderUpdate(targetValue, secondOrder, deltaTime);
+  var newValue = SecondOrderDynamics.Update(targetValue, secondOrder, deltaTime);
   ```
-
-<br>
-
-### Advanced Update with Explicit Velocity Input
-
-If you want more control, you can provide your own **target velocity** when updating the second order dynamics:
-
-```csharp
-var newValue = SecondOrderDynamics.SecondOrderUpdate(targetValue, targetVelocity, secondOrder, deltaTime);
-```
-
-This gives you flexibility to provide a custom velocity calculation
-
-
-> ⚠️ **Custom types** are not supported directly, but you can extend the system by implementing similar overloads for your specific use cases.
 
 <br>
 
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for more details.
-
-
-
-
