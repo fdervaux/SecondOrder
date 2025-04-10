@@ -57,8 +57,8 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.LastPosition;
 
-            Vector2 velocity = (secondOrder.position - secondOrder.LastPosition) / deltaTime;
-            secondOrder.LastPosition = secondOrder.position;
+            Vector2 velocity = (secondOrder.Position - secondOrder.LastPosition) / deltaTime;
+            secondOrder.LastPosition = secondOrder.Position;
             return GenericSecondOrderUpdate(targetPosition, velocity, secondOrder, deltaTime,
                 (a, b) => a + b, (a, b) => a - b, (a, s) => a * s);
         }
@@ -76,8 +76,8 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.LastPosition;
 
-            Vector3 velocity = (secondOrder.position - secondOrder.LastPosition) / deltaTime;
-            secondOrder.LastPosition = secondOrder.position;
+            Vector3 velocity = (secondOrder.Position - secondOrder.LastPosition) / deltaTime;
+            secondOrder.LastPosition = secondOrder.Position;
             return GenericSecondOrderUpdate(targetPosition, velocity, secondOrder, deltaTime,
                 (a, b) => a + b, (a, b) => a - b, (a, s) => a * s);
         }
@@ -94,8 +94,8 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.LastPosition;
 
-            float velocity = (secondOrder.position - secondOrder.LastPosition) / deltaTime;
-            secondOrder.LastPosition = secondOrder.position;
+            float velocity = (secondOrder.Position - secondOrder.LastPosition) / deltaTime;
+            secondOrder.LastPosition = secondOrder.Position;
             return GenericSecondOrderUpdate(targetPosition, velocity, secondOrder, deltaTime,
                 (a, b) => a + b, (a, b) => a - b, (a, s) => a * s);
         }
@@ -113,7 +113,7 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.LastPosition;
 
-            Quaternion deltaRotation = secondOrder.position * Quaternion.Inverse(secondOrder.LastPosition);
+            Quaternion deltaRotation = secondOrder.Position * Quaternion.Inverse(secondOrder.LastPosition);
             Quaternion velocity = deltaRotation.Divide(deltaTime);
 
             secondOrder.LastPosition = secondOrder.Position;
