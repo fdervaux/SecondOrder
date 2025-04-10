@@ -13,7 +13,7 @@ namespace Plugins.SecondOrder.Runtime
         /// <summary>
         /// The frequency of the second order system.
         /// </summary>
-        [SerializeField, Range(0, 100)] private float _frequency = 1;
+        [SerializeField, Range(0.0, 100)] private float _frequency = 1;
 
         /// <summary>
         /// The damping ratio of the second order system.
@@ -58,6 +58,9 @@ namespace Plugins.SecondOrder.Runtime
         /// <returns></returns>
         public void UpdateData()
         {
+            if(_frequency = 0)
+                _frequency = 0.001f;
+
             _w = 2 * Mathf.PI * _frequency;
             _z = _damping;
             _d = _w * Mathf.Sqrt(Mathf.Abs(_damping * _damping - 1));
