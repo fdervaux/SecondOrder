@@ -114,7 +114,7 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.Position;
 
-            Quaternion velocity = targetRotation.Subtract(secondOrder.LastPosition).Divide(deltaTime);
+            Quaternion velocity = targetRotation.Subtract(secondOrder.LastPosition).Divide(deltaTime).NormalizeQuaternion();
             secondOrder.LastPosition = targetRotation;
 
             targetRotation = targetRotation.EnsureSameHemisphere(secondOrder.Position);
