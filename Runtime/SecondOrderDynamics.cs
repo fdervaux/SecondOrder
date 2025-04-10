@@ -21,7 +21,7 @@ namespace Packages.SecondOrder.Runtime
         /// <returns> Updated position.</returns>
         private static T GenericSecondOrderUpdate<T>(
             T targetPosition, T targetVelocity, SecondOrder<T> secondOrder, float deltaTime,
-            Func<T, T, T> add, Func<T, T, T> subtract, Func<T, float, T> scale, Func<T, T> normalize = null)
+            Func<T, T, T> add, Func<T, T, T> subtract, Func<T, float, T> scale, Func<T, T> normalize = x => x)
         {
             if (!secondOrder.IsInit)
                 secondOrder.Init(targetPosition);
@@ -35,12 +35,12 @@ namespace Packages.SecondOrder.Runtime
             secondOrder.Position = add(secondOrder.Position, scale(secondOrder.Velocity, deltaTime));
 
             secondOrder.Velocity = add(secondOrder.Velocity, scale(
-                subtract(add(targetPosition, scale(targetVelocity, secondOrder.Data.K3)),
-                    add(secondOrder.Position, scale(secondOrder.Velocity, secondOrder.Data.K1))),
+                subtract(add(targetPosition, normalize(scale(targetVelocity, secondOrder.Data.K3))),
+                    add(secondOrder.Position, normalize(scale(secondOrder.Velocity, secondOrder.Data.K1)))),
                 deltaTime / secondOrder.Data.K2Stable));
 
-            if (normalize != null)
-                secondOrder.Position = normalize(secondOrder.Position);
+          
+            secondOrder.Position = normalize(secondOrder.Position);
 
             return secondOrder.Position;
         }
@@ -114,14 +114,13 @@ namespace Packages.SecondOrder.Runtime
             if (deltaTime == 0)
                 return secondOrder.Position;
 
-            
-            Quaternion correctedTargetRotation = targetRotation.EnsureSameHemisphere(secondOrder.LastPosition);
-            Quaternion deltaRotation = correctedTargetRotation * Quaternion.Inverse(secondOrder.LastPosition);
+            targetRotation = targetRotation.EnsureSameHemisphere(secondOrder.LastPosition);
+            Quaternion deltaRotation = targetRotation * Quaternion.Inverse(secondOrder.LastPosition);
             Quaternion velocity = deltaRotation.Divide(deltaTime).NormalizeQuaternion();
 
             secondOrder.LastPosition = targetRotation;
 
-            return GenericSecondOrderUpdate(correctedTargetRotation, velocity, secondOrder, deltaTime,
+            return GenericSecondOrderUpdate(targetRotation, velocity, secondOrder, deltaTime,
                 (a, b) => a.Add(b),
                 (a, b) => a.Subtract(b),
                 (a, s) => a.Multiply(s),
