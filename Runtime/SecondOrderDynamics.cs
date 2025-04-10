@@ -33,7 +33,7 @@ namespace Packages.SecondOrder.Runtime
 
             secondOrder.Velocity = add(secondOrder.Velocity, scale(
                 subtract(add(targetPosition, scale(targetVelocity, secondOrder.Data.K3)),
-                    add(secondOrder.Position, scale(secondOrder.Velocity, secondOrder.Data.K1))),
+                    subtract(secondOrder.Position, scale(secondOrder.Velocity, secondOrder.Data.K1))),
                 deltaTime / secondOrder.Data.K2Stable));
 
             secondOrder.Position = add(secondOrder.Position, scale(secondOrder.Velocity, deltaTime));
