@@ -21,13 +21,16 @@ namespace Packages.SecondOrder.Runtime
         /// <returns> Updated position.</returns>
         private static T GenericSecondOrderUpdate<T>(
             T targetPosition, T targetVelocity, SecondOrder<T> secondOrder, float deltaTime,
-            Func<T, T, T> add, Func<T, T, T> subtract, Func<T, float, T> scale, Func<T, T> normalize = x => x)
+            Func<T, T, T> add, Func<T, T, T> subtract, Func<T, float, T> scale, Func<T, T> normalize = null)
         {
             if (!secondOrder.IsInit)
                 secondOrder.Init(targetPosition);
 
             if (deltaTime == 0)
                 return secondOrder.LastPosition;
+
+            if(normalize == null)
+                normalize = x => x;
 
             secondOrder.Data.SetDeltaTime(deltaTime);
 
@@ -115,7 +118,7 @@ namespace Packages.SecondOrder.Runtime
                 return secondOrder.Position;
 
             targetRotation = targetRotation.EnsureSameHemisphere(secondOrder.Position);
-            
+
             Quaternion deltaRotation = targetRotation * Quaternion.Inverse(secondOrder.LastPosition);
             Quaternion velocity = deltaRotation.Divide(deltaTime).NormalizeQuaternion();
 
