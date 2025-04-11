@@ -4,27 +4,44 @@ using UnityEngine;
 
 namespace Package.SecondOrder.Editor
 {
+    /// <summary>
+    /// Custom property drawer for the SecondOrderData class.
+    /// </summary>
     [CustomPropertyDrawer(typeof(SecondOrderData))]
-    public class SecondOrderDataDrawer : NestablePropertyDrawer
+    public class SecondOrderDataDrawer : PropertyDrawer
     {
         private readonly int _graphSize = 300;
-        private SecondOrderData Target => (SecondOrderData)PropertyObject;
+        private SecondOrderData _target;
         private SecondOrder<float> _secondOrder;
         private AnimationCurve _curve;
         private AnimationCurve _targetCurve;
 
         private bool _needUpdateGraph = true;
+        private bool _initialized;
 
+        /// <summary>
+        /// Gets the height of the property drawer.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <param name="label"></param>
+        /// <returns></returns>
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             return (EditorGUIUtility.singleLineHeight + 2) * 4 + _graphSize;
         }
 
+
+        /// <summary>
+        /// Updates the graph based on the current target data.
+        /// </summary>
         private void UpdateGraph()
         {
+            if (!_needUpdateGraph)
+                return;
+
             _secondOrder = new SecondOrder<float>
             {
-                Data = Target
+                Data = _target
             };
 
             const int keyCount = 1000;
@@ -48,8 +65,15 @@ namespace Package.SecondOrder.Editor
             keyFramesTarget[3] = new Keyframe(1f, 1f);
 
             _targetCurve = new AnimationCurve(keyFramesTarget);
+
+            _needUpdateGraph = false;
         }
 
+
+        /// <summary>
+        /// Plots the graph using the given rect.
+        /// </summary>
+        /// <param name="graphRect"></param>
         private void PlotGraph(Rect graphRect)
         {
             EditorGUIUtility.DrawCurveSwatch(graphRect, _curve, null, Color.green, new Color(0, 0, 0, 0.2f),
@@ -58,28 +82,39 @@ namespace Package.SecondOrder.Editor
                 new Rect(0, -1f, 1f, 3f));
         }
 
-        // ReSharper disable Unity.PerformanceAnalysis
-        protected override void Initialize(SerializedProperty prop)
+
+        /// <summary>
+        /// Initializes the property drawer.
+        /// </summary>
+        /// <param name="property"></param>
+        private void Init(SerializedProperty property)
         {
-            base.Initialize(prop);
+            if (_initialized)
+                return;
 
-            if (!_needUpdateGraph) return;
+            _target = (SecondOrderData)DrawerHelper.GetTargetObjectOfProperty(property);
 
-            UpdateGraph();
-            _needUpdateGraph = false;
+            _needUpdateGraph = true;
+            _initialized = true;
         }
 
-
-        // Draw the property inside the given rect
+        /// <summary>
+        /// OnGUI method for the custom property drawer.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="property"></param>
+        /// <param name="label"></param>
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            base.OnGUI(position, property, label);
+            Init(property);
+            UpdateGraph();
 
             EditorGUI.BeginProperty(position, label, property);
 
             // Calculate rects
             Rect frequencyRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-            Rect dampingRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight + 2), position.width,
+            Rect dampingRect = new Rect(position.x, position.y + (EditorGUIUtility.singleLineHeight + 2),
+                position.width,
                 EditorGUIUtility.singleLineHeight);
             Rect impulseRect = new Rect(position.x, position.y + 2 * (EditorGUIUtility.singleLineHeight + 2),
                 position.width, EditorGUIUtility.singleLineHeight);
