@@ -53,5 +53,17 @@ namespace Package.SecondOrder.Runtime
             _position = position;
             _isInit = true;
         }
+
+        /// <summary>
+        /// Resets the second order data with the given position.
+        /// </summary>
+        /// <param name="position"> The position to reset with.</param>
+        public void Reset(T position)
+        {
+            _lastPosition = position;
+            _position = position;
+            _velocity = default;
+            _isInit = true;
+        }
     }
 }
