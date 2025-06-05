@@ -103,7 +103,7 @@ namespace Plugins.SecondOrder.Runtime
 ### How It Works
 
 - `SecondOrder<T>` is a generic struct that holds state for the dynamic system.
-- `SecondOrderDynamics.SecondOrderUpdate()` computes the updated value each frame based on the input target, internal state, and `deltaTime`.
+- `SecondOrderDynamics.Update()` computes the updated value each frame based on the input target, internal state, and `deltaTime`.
 - You can control the behavior using parameters such as **damping**, **frequency**, and **response** through the `SecondOrder<T>` initialization.
 
 <p align="center">
